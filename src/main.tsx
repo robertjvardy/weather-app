@@ -9,7 +9,11 @@ import setupConfig from "./setupConfig.js";
 
 setupConfig();
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: { suspense: true, staleTime: 60000, cacheTime: 60000 },
+  },
+});
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>

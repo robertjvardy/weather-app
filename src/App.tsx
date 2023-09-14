@@ -1,6 +1,11 @@
 import "./App.scss";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import WeatherDisplay from "./scenes/WeatherDisplay/WeatherDisplay";
+import axios from "axios";
+
+const setLocationQuery = (desiredLocation: string) => {
+  axios.defaults.params = { ...axios.defaults.params, q: desiredLocation };
+};
 
 function App() {
   const [desiredLocation, setDesiredLocation] = useState<string | null>(null);
@@ -15,14 +20,20 @@ function App() {
     );
   }
 
+  useEffect(() => {
+    if (desiredLocation) {
+      setLocationQuery(desiredLocation);
+    }
+  }, [desiredLocation]);
+
   return (
     <div>
       <h1>Is It Raining?</h1>
-
+      {/* TODO implement routing based on available location */}
       {desiredLocation ? (
         //TODO add loader
         <Suspense fallback={<div>LOADING ...</div>}>
-          <WeatherDisplay desiredLocation={desiredLocation} />
+          <WeatherDisplay />
         </Suspense>
       ) : null}
     </div>

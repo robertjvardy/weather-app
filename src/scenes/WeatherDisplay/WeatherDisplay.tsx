@@ -1,67 +1,23 @@
-import useCurrentWeather from "./queries";
+import { useCurrentWeather } from "./queries";
 import invariant from "tiny-invariant";
 import styles from "./styles.module.scss";
-import { useState } from "react";
-import classNames from "classNames";
+import CurrentWeather from "./components/CurrentWeather";
+import Forecast from "./components/ForeCast";
 
-const WeatherDisplay = ({ desiredLocation }: { desiredLocation: string }) => {
-  const [tempUnit, setTempUnit] = useState<"c" | "f">("c");
-  const { data } = useCurrentWeather(desiredLocation);
+const WeatherDisplay = () => {
+  const { data } = useCurrentWeather();
+
   invariant(data);
-  const { current, location } = data;
 
-  const isCelsius = tempUnit === "c";
+  const { location } = data;
 
   return (
     <section className={styles["weather-display-container"]}>
-      <div>
+      <h4 className={styles["location-title"]}>
         ...in {location.name}, {location.region}
-      </div>
-      <div className={styles["current-container"]}>
-        <div className={styles["temp"]}>
-          {isCelsius ? current.feelslike_c : current.feelslike_f}
-        </div>
-        <button
-          className={classNames({ [styles.active]: isCelsius })}
-          onClick={() => setTempUnit("c")}
-        >
-          °C
-        </button>
-        <button
-          className={classNames({ [styles.active]: !isCelsius })}
-          onClick={() => setTempUnit("f")}
-        >
-          °F
-        </button>
-        <div className={styles["left-stats"]}>
-          <div className={styles["stat-row"]}>
-            Precipitation: {current.precip_mm}mm
-          </div>
-          <div className={styles["stat-row"]}>
-            Humidity: {current.humidity}%
-          </div>
-          <div className={styles["stat-row"]}>
-            Wind {current.wind_kph}kph {current.wind_dir}
-          </div>
-        </div>
-        <div className={styles["right-stats"]}>
-          <div className={styles["stat-row"]}>Weather</div>
-          <div className={styles["stat-row"]}>
-            {new Date().toLocaleDateString("en-us", {
-              weekday: "long",
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            })}
-          </div>
-          <div className={styles["stat-row"]}>{current.condition.text}</div>
-        </div>
-        <img
-          src={current.condition.icon}
-          className={styles.logo}
-          style={{ filter: "drop-shadow(0 0 1rem rgb(10, 167, 219))" }}
-        />
-      </div>
+      </h4>
+      <CurrentWeather />
+      <Forecast />
     </section>
   );
 };

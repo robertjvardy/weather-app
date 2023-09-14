@@ -1,5 +1,9 @@
 .weather-display-container {
   width: 1000px;
+  .location-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
   .current-container {
     display: flex;
     flex-direction: row;
@@ -7,7 +11,7 @@
     .temp {
       font-size: 80px;
       line-height: 80px;
-      width: 130px;
+      width: 140px;
       text-align: end;
       margin-right: 0.5rem;
     }
@@ -52,6 +56,23 @@
     .logo {
       height: 7rem;
       padding: 0 1em;
+    }
+  }
+
+  .forecast-container {
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+
+    .daily-grid {
+      display: grid;
+      width: 100%;
+      grid-template-columns: repeat(7, 143px);
+
+      .day-tile {
+        height: 143px;
+        // border: 1px solid red;
+      }
     }
   }
 }
