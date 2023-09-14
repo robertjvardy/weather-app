@@ -1,0 +1,57 @@
+.weather-display-container {
+  width: 1000px;
+  .current-container {
+    display: flex;
+    flex-direction: row;
+
+    .temp {
+      font-size: 80px;
+      line-height: 80px;
+      width: 130px;
+      text-align: end;
+      margin-right: 0.5rem;
+    }
+    button {
+      font-size: 1.5rem;
+      padding: 0 0.1rem;
+      opacity: 0.4;
+      display: inline-flex;
+      align-items: flex-start;
+
+      &.active {
+        opacity: 1;
+      }
+    }
+    .left-stats {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      margin-left: 0.5rem;
+      padding: 0.25rem 0;
+      .stat-row {
+        font-size: 1rem;
+      }
+    }
+
+    .right-stats {
+      margin-left: auto;
+      display: flex;
+      flex-direction: column;
+      text-align: right;
+      padding: 0.5rem 0;
+
+      .stat-row {
+        font-size: 0.75rem;
+      }
+
+      :first-child {
+        font-size: 1.5rem;
+      }
+    }
+
+    .logo {
+      height: 7rem;
+      padding: 0 1em;
+    }
+  }
+}
