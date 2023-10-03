@@ -8,7 +8,8 @@ export const useCurrentWeather = () =>
     return response.data;
   });
 
-export const useForecast = (days: number = 7) =>
+// Only 3 days in advance can be fetched in the free tier of this api
+export const useForecast = (days: number = 3) =>
   useQuery<ForecastType>(["forecast"], async () => {
     const response = await axios.get<ForecastType>(
       `/forecast.json?days=${days}`

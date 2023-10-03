@@ -67,11 +67,10 @@
     .daily-grid {
       display: grid;
       width: 100%;
-      grid-template-columns: repeat(7, 143px);
+      grid-template-columns: repeat(3, auto);      
 
       .day-tile {
-        height: 143px;
-        // border: 1px solid red;
+        height: 143px;        
       }
     }
   }

@@ -15,6 +15,9 @@ const CurrentWeather = () => {
 
   return (
     <section>
+      <h4 className={styles["location-title"]}>
+        ...in {data.location.name}, {data.location.region}
+      </h4>
       <div className={styles["current-container"]}>
         <div className={styles["temp"]}>
           {isCelsius ? current.feelslike_c : current.feelslike_f}

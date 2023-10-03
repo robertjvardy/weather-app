@@ -1,24 +1,35 @@
-import { useCurrentWeather } from "./queries";
-import invariant from "tiny-invariant";
 import styles from "./styles.module.scss";
 import CurrentWeather from "./components/CurrentWeather";
-import Forecast from "./components/ForeCast";
+import Forecast from "./components/Forecast";
+import { useEffect, useState } from "react";
+import { setLocationQuery, setupLocation } from "../../locationUtils";
 
 const WeatherDisplay = () => {
-  const { data } = useCurrentWeather();
+  const [desiredLocation, setDesiredLocation] = useState<string | null>(null);
 
-  invariant(data);
+  setupLocation(setDesiredLocation);
 
-  const { location } = data;
+  useEffect(() => {
+    if (desiredLocation) {
+      setLocationQuery(desiredLocation);
+    }
+  }, [desiredLocation]);
 
   return (
-    <section className={styles["weather-display-container"]}>
-      <h4 className={styles["location-title"]}>
-        ...in {location.name}, {location.region}
-      </h4>
-      <CurrentWeather />
-      <Forecast />
-    </section>
+    <>
+      <h1>Is It Raining?</h1>
+      <section className={styles["weather-display-container"]}>
+        {desiredLocation && (
+          <>
+            <CurrentWeather />
+            <Forecast />
+          </>
+        )}
+        {!desiredLocation && (
+          <div>... before we can answer that, we need a location</div>
+        )}
+      </section>
+    </>
   );
 };
 

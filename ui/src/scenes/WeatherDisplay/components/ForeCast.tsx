@@ -32,10 +32,10 @@ const Forecast = () => {
   const { forecast } = forecastData;
   return (
     <section className={styles["forecast-container"]}>
-      <h5>7 Day Forecast</h5>
+      <h5>3 Day Forecast</h5>
       <div className={styles["daily-grid"]}>
         {forecast.forecastday.map((data, index) => (
-          <DailyForecast data={data} index={index} />
+          <DailyForecast data={data} index={index} key={index} />
         ))}
       </div>
     </section>
