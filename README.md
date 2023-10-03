@@ -4,6 +4,8 @@ This ui application demonstrates basic interaction with a free REST api provided
 
 ## How to run locally
 
+### UI
+
 - Requirements: node + a package manager
 - Running this aplication locally requires an API key from [weatherapi.com](https://www.weatherapi.com/).
   - It can be obtained by signing up for their free tier service [here](https://www.weatherapi.com/signup.aspx).
