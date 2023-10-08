@@ -24,8 +24,8 @@ const DailyForecast = ({
   );
 };
 
-const Forecast = () => {
-  const { data: forecastData } = useForecast();
+const Forecast = ({ selectedLocation }: { selectedLocation: string }) => {
+  const { data: forecastData } = useForecast(selectedLocation);
 
   invariant(forecastData);
 

@@ -4,9 +4,9 @@ import styles from "../styles.module.scss";
 import { useState } from "react";
 import classNames from "classNames";
 
-const CurrentWeather = () => {
+const CurrentWeather = ({ selectedLocation }: { selectedLocation: string }) => {
   const [tempUnit, setTempUnit] = useState<"c" | "f">("c");
-  const { data } = useCurrentWeather();
+  const { data } = useCurrentWeather(selectedLocation);
 
   invariant(data);
 
