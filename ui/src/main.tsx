@@ -11,7 +11,8 @@ setupConfig();
 
 const queryClient = new QueryClient({
   defaultOptions: {
-    queries: { suspense: true, staleTime: 60000, cacheTime: 60000 },
+    // queries: { suspense: true, staleTime: 60000, cacheTime: 60000 },
+    queries: { suspense: true },
   },
 });
 

@@ -4,14 +4,12 @@ import { CurrentResponse, ForecastType } from "./types";
 
 export const useCurrentWeather = () =>
   useQuery<CurrentResponse>(["current"], async () => {
-    const response = await axios.get<CurrentResponse>(`/current.json`);
+    const response = await axios.get<CurrentResponse>(`/weather/current`);
     return response.data;
   });
 
-export const useForecast = (days: number = 7) =>
+export const useForecast = () =>
   useQuery<ForecastType>(["forecast"], async () => {
-    const response = await axios.get<ForecastType>(
-      `/forecast.json?days=${days}`
-    );
+    const response = await axios.get<ForecastType>(`/weather/forecast`);
     return response.data;
   });

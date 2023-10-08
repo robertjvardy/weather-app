@@ -10,11 +10,14 @@ const CurrentWeather = () => {
 
   invariant(data);
 
-  const { current } = data;
+  const { current, location } = data;
   const isCelsius = tempUnit === "c";
 
   return (
     <section>
+      <h4 className={styles["location-title"]}>
+        ...in {location.name}, {location.region}
+      </h4>
       <div className={styles["current-container"]}>
         <div className={styles["temp"]}>
           {isCelsius ? current.feelslike_c : current.feelslike_f}

@@ -4,7 +4,10 @@ import WeatherDisplay from "./scenes/WeatherDisplay/WeatherDisplay";
 import axios from "axios";
 
 const setLocationQuery = (desiredLocation: string) => {
-  axios.defaults.params = { ...axios.defaults.params, q: desiredLocation };
+  axios.defaults.params = {
+    ...axios.defaults.params,
+    location: desiredLocation,
+  };
 };
 
 function App() {
@@ -30,7 +33,7 @@ function App() {
     <div>
       <h1>Is It Raining?</h1>
       {/* TODO implement routing based on available location */}
-      {desiredLocation ? (
+      {!!desiredLocation ? (
         //TODO add loader
         <Suspense fallback={<div>LOADING ...</div>}>
           <WeatherDisplay />
